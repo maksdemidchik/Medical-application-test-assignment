@@ -6,7 +6,6 @@
 //
 import SwiftUI
 struct TabBarView:View {
-    
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -30,14 +29,12 @@ struct TabBarView:View {
                     Label("Профиль", image: "Profile")
                 }
             }
-            
             .onAppear {
                 let appearance = UITabBarAppearance()
                 appearance.configureWithOpaqueBackground()
                 appearance.backgroundColor = .white
                 UITabBar.appearance().standardAppearance = appearance
                 UITabBar.appearance().scrollEdgeAppearance = appearance
-                
             }
         }
         

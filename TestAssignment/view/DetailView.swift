@@ -38,7 +38,6 @@ struct DetailView: View {
                         Text("\(doctorDetails.name) \(doctorDetails.patronymic)")
                             .font(.system(size: 16, weight: .semibold))
                     }
-
                 }
                 
                 VStack(alignment: .leading, spacing:10){
@@ -85,22 +84,20 @@ struct DetailView: View {
                                 .trailing,16)
                             .font(.system(size: 16, weight: .semibold))
                     }
-                    
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
                     .cornerRadius(8)
+                    
                     Text(doctorDetails.description)
                         .font(.system(size: 14))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)
-
             .padding(.top, 16)
+            
             Button("Записаться") {
                 showDetail = true
             }

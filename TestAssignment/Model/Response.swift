@@ -5,6 +5,7 @@
 //  Created by Maxim on 17.09.2025.
 //
 import Foundation
+
 struct Response: Decodable {
     let count: Int
     let message: String

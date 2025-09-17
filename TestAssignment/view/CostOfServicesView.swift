@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct CostOfServicesView: View {
     @Environment(\.dismiss) private var dismiss
     private let chatPrice: Int

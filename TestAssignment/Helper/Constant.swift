@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum Constant {
     static let urlString = "https://raw.githubusercontent.com/salfa-ru/test_iOS_akatosphere/main/test.json"
     
