@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct item: Hashable {
     let name: String
@@ -14,15 +15,21 @@ struct item: Hashable {
 struct DetailView: View {
     @Environment(\.dismiss) private var dismiss
     private let doctorDetails: DoctorDetails
+    
     init(doctorDetails: DoctorDetails){
         self.doctorDetails = doctorDetails
     }
+    
     var body: some View {
         ZStack(alignment: .top){
             Color.lightGray.ignoresSafeArea()
             VStack(alignment:.leading,spacing:20){
                 HStack(spacing: 16){
-                    Image("testImage")
+                    KFImage(URL(string: doctorDetails.image))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .clipShape(RoundedRectangle(cornerRadius: 33))
                     VStack(alignment: .leading){
                         
                         Text(doctorDetails.surname)
@@ -36,14 +43,14 @@ struct DetailView: View {
                 VStack(alignment: .leading, spacing:10){
                     HStack(spacing: 12){
                         Image("experienceImage")
-                        Text("Опыт работы: \(doctorDetails.experience ?? "dd") лет")
+                        Text("Опыт работы: \(GrammatickHelper.formatExperience(doctorDetails.experience))")
                             .font(.system(size: 14,weight: .regular))
                             .foregroundColor(.darkGray)
                     }
 
                     HStack(spacing: 12){
                         Image("CategoryImage")
-                        Text("Врач высшей категории")
+                        Text(doctorDetails.category)
                             .font(.system(size: 14,weight: .regular))
                             .foregroundColor(.darkGray)
                     }
@@ -127,5 +134,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(doctorDetails: DoctorDetails(surname: "Семенова", name: "Дарья", patronymic: "Сергеевна", specialization: "Педиатр", rating: 4, experience: "33", price: "33", university: "1-й ММИ им. И.М.Сеченова", description: "Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.", placeOFWork: "Детская клиника “РебёнОК”", image: "testImage",category: "Врач высшей категории"))
+    DetailView(doctorDetails: DoctorDetails(surname: "Семеновв", name: "Дарья", patronymic: "Cергеевна", specialization: "Педиатр", rating: 3, experience: 27, price: 600, university: "1-й ММИ им. И.М.Сеченова", description: Constant.constantDescription, placeOFWork: Constant.constantPlaceOFWork, image: Constant.baseURLConstantAvatar, category: GrammatickHelper.formCategory(2)))
 }

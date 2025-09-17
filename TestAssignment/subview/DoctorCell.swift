@@ -5,15 +5,14 @@
 //  Created by Maxim on 11.09.2025.
 //
 import SwiftUI
+import Kingfisher
+
 struct DoctorCell: View {
     private var tasksString: String {
-        if experience != nil {
-            return String.localizedStringWithFormat(
-                NSLocalizedString("experience", comment: "Number of remaining tasks"),
-                experience ?? -1
-            )
-        }
-        return "неизвестен"
+        return GrammatickHelper.formatExperience(experience ?? 0)
+    }
+    private var ImageURL: URL {
+        return URL(string: image)!
     }
     private let surname: String
     private let name: String
@@ -29,7 +28,7 @@ struct DoctorCell: View {
          rating: Int,
          experience: Int?,
          price: String,
-         image: String,
+         image: String?,
          onBookAction: @escaping () -> Void) {
         self.surname = surname
         self.name = name
@@ -38,7 +37,7 @@ struct DoctorCell: View {
         self.rating = rating
         self.experience = experience
         self.price = price
-        self.image = image
+        self.image = image ?? Constant.baseURLConstantAvatar
         self.onBookAction = onBookAction
     }
     
@@ -46,10 +45,11 @@ struct DoctorCell: View {
         VStack(alignment: .leading, spacing: 20) {
 
             HStack(alignment: .top,spacing: 16) {
-
-                Image(image)
+                KFImage(ImageURL)
+                    .resizable()
+                    .scaledToFill()
                     .frame(width: 50, height: 50)
-
+                    .clipShape(RoundedRectangle(cornerRadius: 33))
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(surname)\n\(name) \(patronymic)")
                         .font(.system(size: 16, weight: .semibold))
@@ -62,7 +62,7 @@ struct DoctorCell: View {
                         }
                     }
                     
-                    Text("Педиатр・стаж \(tasksString)")
+                    Text("Педиатр・\(tasksString)")
                         .font(.system(size: 14, weight: .regular))
                         .foregroundColor(.darkGray)
                         .lineLimit(1)
@@ -98,5 +98,5 @@ struct DoctorCell: View {
 }
 
 #Preview {
-    DoctorCell(surname: "ggg", name: "rrrr", patronymic: "rr", rating: 3, experience: 1, price: "11", image: "testImage", onBookAction: {})
+    DoctorCell(surname: "ggg", name: "rrrr", patronymic: "rr", rating: 3, experience: 21, price: "11", image: "testImage", onBookAction: {})
 }

@@ -15,8 +15,8 @@ struct DoctorDetails: Identifiable {
     let patronymic: String
     let specialization: String
     let rating: Int
-    let experience: String?
-    let price: String
+    let experience: Int
+    let price: Int
     let university : String
     let description : String
     let placeOFWork : String
