@@ -14,6 +14,7 @@ struct item: Hashable {
 
 struct DetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var showDetail = false
     private let doctorDetails: DoctorDetails
     
     init(doctorDetails: DoctorDetails){
@@ -100,9 +101,8 @@ struct DetailView: View {
             .padding(.horizontal, 16)
 
             .padding(.top, 16)
-            
             Button("Записаться") {
-          
+                showDetail = true
             }
             .frame(maxWidth: .infinity)
             .frame(height: 56)
@@ -113,9 +113,14 @@ struct DetailView: View {
             .padding(.bottom, 10)
             .padding(.horizontal, 16)
             .frame(maxHeight: .infinity, alignment: .bottom)
+           
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .listStyle(PlainListStyle())
+        .navigationDestination(isPresented: $showDetail) {
+            CostOfServicesView(chatPrice: doctorDetails.chatPrice, videoPrice: doctorDetails.videoPrice, hospitalPrice: doctorDetails.hospitalPrice, homePrice: doctorDetails.homePrice)
+        }
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("Педиатр")
@@ -129,10 +134,10 @@ struct DetailView: View {
                 }
             }
         }
+        
     }
-    
 }
 
 #Preview {
-    DetailView(doctorDetails: DoctorDetails(surname: "Семеновв", name: "Дарья", patronymic: "Cергеевна", specialization: "Педиатр", rating: 3, experience: 27, price: 600, university: "1-й ММИ им. И.М.Сеченова", description: Constant.constantDescription, placeOFWork: Constant.constantPlaceOFWork, image: Constant.baseURLConstantAvatar, category: GrammatickHelper.formCategory(2)))
+    DetailView(doctorDetails: DoctorDetails(surname: "Семеновв", name: "Дарья", patronymic: "Cергеевна", specialization: "Педиатр", rating: 3, experience: 27, price: 600, university: "1-й ММИ им. И.М.Сеченова", description: Constant.constantDescription, placeOFWork: Constant.constantPlaceOFWork, image: Constant.baseURLConstantAvatar, category: GrammatickHelper.formCategory(2), chatPrice: 100, homePrice: 200, videoPrice: 300, hospitalPrice: 400))
 }

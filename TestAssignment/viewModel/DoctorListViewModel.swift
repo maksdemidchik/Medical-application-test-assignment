@@ -71,7 +71,7 @@ final class DoctorListViewModel: ObservableObject {
             
             let minPrice = [doctor.homePrice,doctor.homePrice,doctor.textChatPrice,doctor.videoChatPrice].filter({$0 != 0}).min() ?? 0
             
-            let doctorDetail = DoctorDetails(surname: doctor.lastName, name: doctor.firstName, patronymic: doctor.patronymic, specialization: "Педиатр", rating: Int(doctor.rank), experience: doctor.seniority, price: minPrice, university: doctor.educationTypeLabel?.name ?? Constant.educationConstant, description: Constant.constantDescription, placeOFWork: Constant.constantPlaceOFWork, image: doctor.avatar ?? Constant.baseURLConstantAvatar, category: GrammatickHelper.formCategory(doctor.category))
+            let doctorDetail = DoctorDetails(surname: doctor.lastName, name: doctor.firstName, patronymic: doctor.patronymic, specialization: "Педиатр", rating: Int(doctor.rank), experience: doctor.seniority, price: minPrice, university: doctor.educationTypeLabel?.name ?? Constant.educationConstant, description: Constant.constantDescription, placeOFWork: Constant.constantPlaceOFWork, image: doctor.avatar ?? Constant.baseURLConstantAvatar, category: GrammatickHelper.formCategory(doctor.category), chatPrice: doctor.textChatPrice, homePrice: doctor.homePrice, videoPrice: doctor.videoChatPrice, hospitalPrice: doctor.hospitalPrice)
             
             doctors.append(doctorDetail)
         }

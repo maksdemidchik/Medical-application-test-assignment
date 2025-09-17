@@ -34,8 +34,6 @@ struct DoctorListView: View {
                     }
                     .padding(.horizontal, 16)
                     .listStyle(PlainListStyle())
-                    .scrollContentBackground(.hidden)
-                    .navigationTitle("Врачи")
                     .navigationDestination(isPresented: $showDetail) {
                         if let curDoctor = currentDoctor {
                             DetailView(doctorDetails: curDoctor)

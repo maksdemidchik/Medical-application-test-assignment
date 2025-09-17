@@ -22,4 +22,8 @@ struct DoctorDetails: Identifiable {
     let placeOFWork : String
     let image: String
     let category: String
+    let chatPrice: Int
+    let homePrice: Int
+    let videoPrice: Int
+    let hospitalPrice: Int
 }
